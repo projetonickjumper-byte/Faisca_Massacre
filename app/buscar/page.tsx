@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { Search, SlidersHorizontal, X, MapPin, Star, ArrowLeft, Dumbbell, Building2, Swords, Sparkles, Music, Flame } from "lucide-react"
+import { Search, SlidersHorizontal, X, MapPin, Star, ArrowLeft, Dumbbell, Building2, Swords, Sparkles, Music, Flame, Loader2 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
@@ -48,7 +48,7 @@ const categoryNames: Record<string, string> = {
   crossfit: "Crossfit",
 }
 
-export default function BuscarPage() {
+function BuscarContent() {
   const searchParams = useSearchParams()
   const categoriaParam = searchParams.get("categoria")
   
@@ -436,5 +436,26 @@ export default function BuscarPage() {
         </div>
       </div>
     </AppShell>
+  )
+}
+
+function BuscarLoading() {
+  return (
+    <AppShell>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-muted-foreground">Carregando...</p>
+        </div>
+      </div>
+    </AppShell>
+  )
+}
+
+export default function BuscarPage() {
+  return (
+    <Suspense fallback={<BuscarLoading />}>
+      <BuscarContent />
+    </Suspense>
   )
 }

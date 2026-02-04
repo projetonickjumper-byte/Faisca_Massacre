@@ -203,3 +203,137 @@ export interface GymClass {
   spotsAvailable: number
   day: string
 }
+
+// Tipos para Treinos
+export interface Workout {
+  id: string
+  trainerId: string
+  name: string
+  description: string
+  objective: "hipertrofia" | "emagrecimento" | "condicionamento" | "forca" | "resistencia" | "flexibilidade"
+  level: "iniciante" | "intermediario" | "avancado"
+  exercises: WorkoutExercise[]
+  assignedStudents: string[]
+  createdAt: string
+  updatedAt: string
+}
+
+export interface WorkoutExercise {
+  id: string
+  name: string
+  category: string
+  sets: number
+  reps: string
+  rest: string
+  notes?: string
+  order: number
+}
+
+export interface Exercise {
+  id: string
+  name: string
+  category: string
+  muscleGroup: string
+  equipment?: string
+  instructions?: string
+  videoUrl?: string
+}
+
+// Tipos para Avaliação Física
+export interface PhysicalAssessment {
+  id: string
+  trainerId: string
+  studentId: string
+  studentName: string
+  date: string
+  measurements: BodyMeasurements
+  vitalSigns: VitalSigns
+  observations?: string
+  objectives?: string[]
+  createdAt: string
+  updatedAt: string
+}
+
+export interface BodyMeasurements {
+  weight: number // kg
+  height: number // cm
+  imc?: number
+  bodyFat?: number // %
+  leanMass?: number // kg
+  neck?: number // cm
+  shoulders?: number
+  chest?: number
+  waist?: number
+  hips?: number
+  leftArm?: number
+  rightArm?: number
+  leftForearm?: number
+  rightForearm?: number
+  leftThigh?: number
+  rightThigh?: number
+  leftCalf?: number
+  rightCalf?: number
+}
+
+export interface VitalSigns {
+  heartRate?: number // bpm
+  bloodPressureSystolic?: number
+  bloodPressureDiastolic?: number
+  respiratoryRate?: number
+}
+
+// Tipos para Alunos
+export interface Student {
+  id: string
+  trainerId: string
+  name: string
+  email: string
+  phone: string
+  avatar?: string
+  birthDate?: string
+  gender?: "male" | "female" | "other"
+  objectives?: string[]
+  limitations?: string
+  startDate: string
+  status: "active" | "inactive" | "pending"
+  lastWorkout?: string
+  lastAssessment?: string
+}
+
+// Tipos para Admin Dashboard
+export interface AdminDashboardStats {
+  totalCompanies: number
+  totalUsers: number
+  totalRevenue: number
+  monthlyRevenue: number
+  newCompaniesToday: number
+  newCompaniesWeek: number
+  newCompaniesMonth: number
+  activeCompanies: number
+  pendingCompanies: number
+  blockedCompanies: number
+}
+
+export interface Company {
+  id: string
+  name: string
+  email: string
+  phone: string
+  type: "gym" | "personal" | "studio" | "instructor"
+  status: "active" | "pending" | "blocked"
+  planType: "free" | "basic" | "premium"
+  createdAt: string
+  lastLogin?: string
+  monthlyRevenue: number
+}
+
+export interface Transaction {
+  id: string
+  companyId: string
+  companyName: string
+  amount: number
+  type: "subscription" | "commission" | "refund"
+  status: "completed" | "pending" | "failed"
+  date: string
+  description: string
+}

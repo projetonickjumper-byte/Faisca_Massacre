@@ -11,7 +11,7 @@
  * 2. Implemente os endpoints no seu backend
  */
 
-import { API_CONFIG, ENDPOINTS } from "../config"
+import { API_CONFIG } from "../config"
 import { httpClient, ApiResponse } from "../http-client"
 
 // Tipos para Pedidos/Aquisições
@@ -216,7 +216,7 @@ class OrdersService {
       })
     }
 
-    return httpClient.get<ServiceOrder[]>(`${ENDPOINTS.ORDERS}?${queryParams}`)
+    return httpClient.get<ServiceOrder[]>(`${API_CONFIG.ENDPOINTS.ORDERS.LIST}?${queryParams}`)
   }
 
   /**
@@ -229,7 +229,7 @@ class OrdersService {
       return { data: order, success: true }
     }
 
-    return httpClient.get<ServiceOrder>(`${ENDPOINTS.ORDERS}/${id}`)
+    return httpClient.get<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.GET(id))
   }
 
   /**
@@ -267,7 +267,7 @@ class OrdersService {
       return { data: newOrder, success: true }
     }
 
-    return httpClient.post<ServiceOrder>(ENDPOINTS.ORDERS, data)
+    return httpClient.post<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.CREATE, data)
   }
 
   /**
@@ -292,7 +292,7 @@ class OrdersService {
       return { data: this.orders[index], success: true }
     }
 
-    return httpClient.patch<ServiceOrder>(`${ENDPOINTS.ORDERS}/${orderId}/confirm`, {})
+    return httpClient.patch<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.CONFIRM(orderId), {})
   }
 
   /**
@@ -316,7 +316,7 @@ class OrdersService {
       return { data: this.orders[index], success: true }
     }
 
-    return httpClient.patch<ServiceOrder>(`${ENDPOINTS.ORDERS}/${orderId}/start`, {})
+    return httpClient.patch<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.START(orderId), {})
   }
 
   /**
@@ -341,7 +341,7 @@ class OrdersService {
       return { data: this.orders[index], success: true }
     }
 
-    return httpClient.patch<ServiceOrder>(`${ENDPOINTS.ORDERS}/${orderId}/complete`, {})
+    return httpClient.patch<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.COMPLETE(orderId), {})
   }
 
   /**
@@ -366,7 +366,7 @@ class OrdersService {
       return { data: this.orders[index], success: true }
     }
 
-    return httpClient.patch<ServiceOrder>(`${ENDPOINTS.ORDERS}/${orderId}/cancel`, { reason })
+    return httpClient.patch<ServiceOrder>(API_CONFIG.ENDPOINTS.ORDERS.CANCEL(orderId), { reason })
   }
 
   /**
@@ -390,7 +390,7 @@ class OrdersService {
       return { data: this.orders[index], success: true }
     }
 
-    return httpClient.patch<ServiceOrder>(`${ENDPOINTS.ORDERS}/${orderId}/payment`, { paymentStatus })
+    return httpClient.patch<ServiceOrder>(`${API_CONFIG.ENDPOINTS.ORDERS.GET(orderId)}/payment`, { paymentStatus })
   }
 
   /**
@@ -440,8 +440,8 @@ class OrdersService {
     }
 
     const endpoint = partnerId 
-      ? `${ENDPOINTS.ORDERS}/stats?partnerId=${partnerId}`
-      : `${ENDPOINTS.ORDERS}/stats`
+      ? `${API_CONFIG.ENDPOINTS.ORDERS.STATS}?partnerId=${partnerId}`
+      : API_CONFIG.ENDPOINTS.ORDERS.STATS
     
     return httpClient.get(endpoint)
   }
@@ -455,7 +455,7 @@ class OrdersService {
       return { data: { success: true }, success: true }
     }
 
-    return httpClient.post(`${ENDPOINTS.ORDERS}/${orderId}/link-workout`, { workoutId })
+    return httpClient.post(API_CONFIG.ENDPOINTS.ORDERS.LINK_WORKOUT(orderId), { workoutId })
   }
 
   /**
@@ -467,7 +467,7 @@ class OrdersService {
       return { data: { success: true }, success: true }
     }
 
-    return httpClient.post(`${ENDPOINTS.ORDERS}/${orderId}/link-assessment`, { assessmentId })
+    return httpClient.post(API_CONFIG.ENDPOINTS.ORDERS.LINK_ASSESSMENT(orderId), { assessmentId })
   }
 }
 

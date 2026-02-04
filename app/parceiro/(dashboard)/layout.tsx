@@ -20,6 +20,8 @@ import {
   Bell,
   Building2,
   ChevronDown,
+  Dumbbell,
+  ClipboardList,
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -38,12 +40,14 @@ import { useAuth } from "@/lib/auth-context"
 const sidebarItems = [
   { href: "/parceiro/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/parceiro/agenda", icon: Calendar, label: "Agenda" },
-  { href: "/parceiro/servicos", icon: Package, label: "Servicos" },
+  { href: "/parceiro/treinos", icon: Dumbbell, label: "Treinos" },
+  { href: "/parceiro/avaliacao-fisica", icon: ClipboardList, label: "Avaliação Física" },
+  { href: "/parceiro/servicos", icon: Package, label: "Serviços" },
   { href: "/parceiro/produtos", icon: ShoppingBag, label: "Produtos" },
   { href: "/parceiro/clientes", icon: Users, label: "Clientes" },
-  { href: "/parceiro/avaliacoes", icon: Star, label: "Avaliacoes" },
-  { href: "/parceiro/relatorios", icon: BarChart3, label: "Relatorios" },
-  { href: "/parceiro/configuracoes", icon: Settings, label: "Configuracoes" },
+  { href: "/parceiro/avaliacoes", icon: Star, label: "Avaliações" },
+  { href: "/parceiro/relatorios", icon: BarChart3, label: "Relatórios" },
+  { href: "/parceiro/configuracoes", icon: Settings, label: "Configurações" },
 ]
 
 export default function PartnerDashboardLayout({

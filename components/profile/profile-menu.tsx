@@ -15,6 +15,8 @@ import {
   HelpCircle,
   LogOut,
   ChevronRight,
+  Dumbbell,
+  ClipboardList,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -28,10 +30,17 @@ interface MenuItem {
 
 const menuSections: { title: string; items: MenuItem[] }[] = [
   {
-    title: "Atividade",
+    title: "Treino e Saúde",
     items: [
+      { icon: Dumbbell, label: "Meus Treinos", href: "/perfil/meus-treinos", badge: 3 },
+      { icon: ClipboardList, label: "Minhas Avaliações", href: "/perfil/minhas-avaliacoes" },
       { icon: History, label: "Histórico de Treinos", href: "/perfil/historico" },
       { icon: Calendar, label: "Minhas Reservas", href: "/perfil/reservas", badge: 2 },
+    ],
+  },
+  {
+    title: "Atividade",
+    items: [
       { icon: Heart, label: "Favoritos", href: "/perfil/favoritos" },
       { icon: Award, label: "Conquistas", href: "/perfil/conquistas" },
       { icon: Users, label: "Indicar Amigos", href: "/perfil/indicar", badge: "+100 XP" },

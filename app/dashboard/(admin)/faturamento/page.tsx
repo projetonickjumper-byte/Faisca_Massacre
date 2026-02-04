@@ -160,13 +160,13 @@ export default function FaturamentoPage() {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--popover))",
-                      border: "1px solid hsl(var(--border))",
+                      backgroundColor: "#1f1f23",
+                      border: "1px solid #3f3f46",
                       borderRadius: "8px",
-                      color: "hsl(var(--popover-foreground))",
+                      color: "#fafafa",
                     }}
-                    labelStyle={{ color: "hsl(var(--popover-foreground))" }}
-                    itemStyle={{ color: "hsl(var(--popover-foreground))" }}
+                    labelStyle={{ color: "#fafafa" }}
+                    itemStyle={{ color: "#fafafa" }}
                     formatter={(value: number) => [formatCurrency(value), "Faturamento"]}
                   />
                   <Bar dataKey="valor" fill="hsl(var(--success))" radius={[4, 4, 0, 0]} />
@@ -195,13 +195,13 @@ export default function FaturamentoPage() {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--popover))",
-                      border: "1px solid hsl(var(--border))",
+                      backgroundColor: "#1f1f23",
+                      border: "1px solid #3f3f46",
                       borderRadius: "8px",
-                      color: "hsl(var(--popover-foreground))",
+                      color: "#fafafa",
                     }}
-                    labelStyle={{ color: "hsl(var(--popover-foreground))" }}
-                    itemStyle={{ color: "hsl(var(--popover-foreground))" }}
+                    labelStyle={{ color: "#fafafa" }}
+                    itemStyle={{ color: "#fafafa" }}
                     formatter={(value: number) => [`${value}%`, "Crescimento"]}
                   />
                   <Line

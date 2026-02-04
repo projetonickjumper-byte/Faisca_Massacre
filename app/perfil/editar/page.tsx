@@ -27,7 +27,7 @@ export default function EditarPerfilPage() {
     phone: "(11) 99999-9999",
     birthdate: "1990-05-15",
     bio: mockUser.bio || "",
-    city: "Sao Paulo",
+    city: "São Paulo",
     state: "SP",
     gender: "masculino",
   })
@@ -94,7 +94,7 @@ export default function EditarPerfilPage() {
           <div className="space-y-6">
             {/* Personal Info */}
             <div className="rounded-xl bg-card border border-border p-4 space-y-4">
-              <h2 className="font-semibold text-foreground">Informacoes Pessoais</h2>
+              <h2 className="font-semibold text-foreground">Informações Pessoais</h2>
 
               <div className="space-y-2">
                 <Label htmlFor="name">Nome Completo</Label>
@@ -152,7 +152,7 @@ export default function EditarPerfilPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="gender">Genero</Label>
+                  <Label htmlFor="gender">Gênero</Label>
                   <Select
                     value={formData.gender}
                     onValueChange={(value) => handleChange("gender", value)}
@@ -164,7 +164,7 @@ export default function EditarPerfilPage() {
                       <SelectItem value="masculino">Masculino</SelectItem>
                       <SelectItem value="feminino">Feminino</SelectItem>
                       <SelectItem value="outro">Outro</SelectItem>
-                      <SelectItem value="nao_informar">Prefiro nao informar</SelectItem>
+                      <SelectItem value="nao_informar">Prefiro não informar</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -173,7 +173,7 @@ export default function EditarPerfilPage() {
 
             {/* Location */}
             <div className="rounded-xl bg-card border border-border p-4 space-y-4">
-              <h2 className="font-semibold text-foreground">Localizacao</h2>
+              <h2 className="font-semibold text-foreground">Localização</h2>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -217,7 +217,7 @@ export default function EditarPerfilPage() {
 
             {/* Bio */}
             <div className="rounded-xl bg-card border border-border p-4 space-y-4">
-              <h2 className="font-semibold text-foreground">Sobre Voce</h2>
+              <h2 className="font-semibold text-foreground">Sobre Você</h2>
 
               <div className="space-y-2">
                 <Label htmlFor="bio">Bio</Label>
@@ -225,7 +225,7 @@ export default function EditarPerfilPage() {
                   id="bio"
                   value={formData.bio}
                   onChange={(e) => handleChange("bio", e.target.value)}
-                  placeholder="Conte um pouco sobre voce e seus objetivos fitness..."
+                  placeholder="Conte um pouco sobre você e seus objetivos fitness..."
                   rows={4}
                 />
                 <p className="text-xs text-muted-foreground text-right">

@@ -37,7 +37,7 @@ export function Header() {
               </Link>
               <Link href="/perfil">
                 <Avatar className="h-9 w-9 border-2 border-primary">
-                  <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name || "Usuario"} />
+                  <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name || "Usuário"} />
                   <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
                 </Avatar>
               </Link>

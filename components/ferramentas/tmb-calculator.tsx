@@ -23,11 +23,11 @@ interface TMBResult {
 }
 
 const ACTIVITY_LEVELS = [
-  { value: "sedentary", label: "Sedentario", multiplier: 1.2, description: "Pouco ou nenhum exercicio" },
-  { value: "light", label: "Leve", multiplier: 1.375, description: "Exercicio leve 1-3 dias/semana" },
-  { value: "moderate", label: "Moderado", multiplier: 1.55, description: "Exercicio moderado 3-5 dias/semana" },
-  { value: "active", label: "Ativo", multiplier: 1.725, description: "Exercicio intenso 6-7 dias/semana" },
-  { value: "veryActive", label: "Muito Ativo", multiplier: 1.9, description: "Exercicio muito intenso + trabalho fisico" },
+  { value: "sedentary", label: "Sedentário", multiplier: 1.2, description: "Pouco ou nenhum exercício" },
+  { value: "light", label: "Leve", multiplier: 1.375, description: "Exercício leve 1-3 dias/semana" },
+  { value: "moderate", label: "Moderado", multiplier: 1.55, description: "Exercício moderado 3-5 dias/semana" },
+  { value: "active", label: "Ativo", multiplier: 1.725, description: "Exercício intenso 6-7 dias/semana" },
+  { value: "veryActive", label: "Muito Ativo", multiplier: 1.9, description: "Exercício muito intenso + trabalho físico" },
 ]
 
 function calculateTMB(
@@ -92,7 +92,7 @@ export function TMBCalculator() {
             </div>
             <div>
               <CardTitle className="text-base">Calculadora de TMB</CardTitle>
-              <CardDescription className="text-xs">Taxa Metabolica Basal</CardDescription>
+              <CardDescription className="text-xs">Taxa Metabólica Basal</CardDescription>
             </div>
           </div>
         </div>

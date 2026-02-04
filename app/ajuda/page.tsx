@@ -28,15 +28,15 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Como altero minha senha?",
-        answer: "Va ate Perfil > Seguranca > Alterar Senha. Digite sua senha atual e depois a nova senha duas vezes para confirmar.",
+        answer: "Vá até Perfil > Segurança > Alterar Senha. Digite sua senha atual e depois a nova senha duas vezes para confirmar.",
       },
       {
         question: "Como atualizo meus dados pessoais?",
-        answer: "Acesse Perfil > Editar Perfil. La voce pode alterar nome, foto, email e outras informacoes.",
+        answer: "Acesse Perfil > Editar Perfil. Lá você pode alterar nome, foto, email e outras informações.",
       },
       {
         question: "Como excluo minha conta?",
-        answer: "Va ate Perfil > Seguranca e role ate 'Zona de Perigo'. Clique em 'Excluir Conta'. Atencao: esta acao e irreversivel.",
+        answer: "Vá até Perfil > Segurança e role até 'Zona de Perigo'. Clique em 'Excluir Conta'. Atenção: esta ação é irreversível.",
       },
     ],
   },
@@ -46,15 +46,15 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Como faco uma reserva?",
-        answer: "Escolha uma academia, selecione a aula ou servico desejado e clique em 'Reservar'. Confirme os detalhes e pronto!",
+        answer: "Escolha uma academia, selecione a aula ou serviço desejado e clique em 'Reservar'. Confirme os detalhes e pronto!",
       },
       {
         question: "Como cancelo uma reserva?",
-        answer: "Va ate Perfil > Minhas Reservas, encontre a reserva e clique em 'Cancelar'. Cancelamentos devem ser feitos com ate 2h de antecedencia.",
+        answer: "Vá até Perfil > Minhas Reservas, encontre a reserva e clique em 'Cancelar'. Cancelamentos devem ser feitos com até 2h de antecedência.",
       },
       {
         question: "O que e Day Use?",
-        answer: "Day Use permite que voce use uma academia por um dia sem precisar de plano mensal. Ideal para viagens ou para conhecer novos lugares.",
+        answer: "Day Use permite que você use uma academia por um dia sem precisar de plano mensal. Ideal para viagens ou para conhecer novos lugares.",
       },
     ],
   },
@@ -64,15 +64,15 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Quais formas de pagamento sao aceitas?",
-        answer: "Aceitamos cartoes de credito (Visa, Mastercard, Elo), debito e PIX para pagamentos instantaneos.",
+        answer: "Aceitamos cartões de crédito (Visa, Mastercard, Elo), débito e PIX para pagamentos instantâneos.",
       },
       {
         question: "Como solicito reembolso?",
-        answer: "Entre em contato com nosso suporte atraves do chat ou email. Reembolsos sao processados em ate 7 dias uteis.",
+        answer: "Entre em contato com nosso suporte através do chat ou email. Reembolsos são processados em até 7 dias úteis.",
       },
       {
         question: "O pagamento e seguro?",
-        answer: "Sim! Utilizamos criptografia SSL e nao armazenamos dados sensiveis de cartao. Todos os pagamentos sao processados por gateways certificados.",
+        answer: "Sim! Utilizamos criptografia SSL e não armazenamos dados sensíveis de cartão. Todos os pagamentos são processados por gateways certificados.",
       },
     ],
   },
@@ -82,15 +82,15 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Como ganho XP?",
-        answer: "Voce ganha XP fazendo check-ins, completando treinos, participando de desafios e indicando amigos.",
+        answer: "Você ganha XP fazendo check-ins, completando treinos, participando de desafios e indicando amigos.",
       },
       {
         question: "O que sao niveis?",
-        answer: "Niveis representam seu progresso no app. A cada 200 XP voce sobe de nivel e desbloqueia novas conquistas e beneficios.",
+        answer: "Níveis representam seu progresso no app. A cada 200 XP você sobe de nível e desbloqueia novas conquistas e benefícios.",
       },
       {
         question: "Como funciona o ranking?",
-        answer: "O ranking mostra os usuarios mais ativos de cada academia. Os top 3 ganham badges especiais todo mes!",
+        answer: "O ranking mostra os usuários mais ativos de cada academia. Os top 3 ganham badges especiais todo mês!",
       },
     ],
   },
@@ -261,7 +261,7 @@ export default function AjudaPage() {
 
           {/* External Links */}
           <div className="rounded-xl bg-card border border-border p-4">
-            <h3 className="font-semibold text-foreground mb-3">Links Uteis</h3>
+            <h3 className="font-semibold text-foreground mb-3">Links Úteis</h3>
             <div className="space-y-2">
               <a
                 href="#"
@@ -274,14 +274,14 @@ export default function AjudaPage() {
                 href="#"
                 className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <span>Politica de Privacidade</span>
+                <span>Política de Privacidade</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <span>Central de Seguranca</span>
+                <span>Central de Segurança</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
             </div>

@@ -26,8 +26,8 @@ export default function CadastroPage() {
   const router = useRouter()
 
   const passwordRequirements = [
-    { label: "Minimo 6 caracteres", valid: password.length >= 6 },
-    { label: "Letras e numeros", valid: /[a-zA-Z]/.test(password) && /[0-9]/.test(password) },
+    { label: "Mínimo 6 caracteres", valid: password.length >= 6 },
+    { label: "Letras e números", valid: /[a-zA-Z]/.test(password) && /[0-9]/.test(password) },
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,12 +35,12 @@ export default function CadastroPage() {
     setError("")
 
     if (password !== confirmPassword) {
-      setError("As senhas nao coincidem")
+      setError("As senhas não coincidem")
       return
     }
 
     if (!acceptTerms) {
-      setError("Voce precisa aceitar os termos de uso")
+      setError("Você precisa aceitar os termos de uso")
       return
     }
 
@@ -184,7 +184,7 @@ export default function CadastroPage() {
                 </Link>{" "}
                 e{" "}
                 <Link href="/privacidade" className="text-primary hover:underline">
-                  Politica de Privacidade
+                  Política de Privacidade
                 </Link>
               </label>
             </div>
@@ -207,7 +207,7 @@ export default function CadastroPage() {
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Ja tem uma conta?{" "}
+            Já tem uma conta?{" "}
             <Link href="/login" className="font-medium text-primary hover:underline">
               Entrar
             </Link>

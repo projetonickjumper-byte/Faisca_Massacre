@@ -171,7 +171,7 @@ export default function LoginPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
-            Nao tem uma conta?{" "}
+            Não tem uma conta?{" "}
             <Link href="/cadastro" className="font-medium text-primary hover:underline">
               Cadastre-se
             </Link>

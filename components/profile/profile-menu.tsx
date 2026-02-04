@@ -30,7 +30,7 @@ const menuSections: { title: string; items: MenuItem[] }[] = [
   {
     title: "Atividade",
     items: [
-      { icon: History, label: "Historico de Treinos", href: "/perfil/historico" },
+      { icon: History, label: "Histórico de Treinos", href: "/perfil/historico" },
       { icon: Calendar, label: "Minhas Reservas", href: "/perfil/reservas", badge: 2 },
       { icon: Heart, label: "Favoritos", href: "/perfil/favoritos" },
       { icon: Award, label: "Conquistas", href: "/perfil/conquistas" },
@@ -41,8 +41,8 @@ const menuSections: { title: string; items: MenuItem[] }[] = [
     title: "Conta",
     items: [
       { icon: CreditCard, label: "Pagamentos", href: "/perfil/pagamentos" },
-      { icon: Bell, label: "Notificacoes", href: "/perfil/notificacoes" },
-      { icon: Shield, label: "Seguranca", href: "/perfil/seguranca" },
+      { icon: Bell, label: "Notificações", href: "/perfil/notificacoes" },
+      { icon: Shield, label: "Segurança", href: "/perfil/seguranca" },
     ],
   },
   {

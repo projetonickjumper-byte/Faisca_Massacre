@@ -34,8 +34,8 @@ export default function EsqueciSenhaPage() {
           </div>
           <h2 className="text-2xl font-bold text-foreground">Email enviado!</h2>
           <p className="mt-3 text-muted-foreground">
-            Enviamos um link de recuperacao para <strong className="text-foreground">{email}</strong>. 
-            Verifique sua caixa de entrada e siga as instrucoes.
+            Enviamos um link de recuperação para <strong className="text-foreground">{email}</strong>. 
+            Verifique sua caixa de entrada e siga as instruções.
           </p>
           <div className="mt-8 space-y-3">
             <Button asChild className="w-full" size="lg">
@@ -46,7 +46,7 @@ export default function EsqueciSenhaPage() {
               className="w-full"
               onClick={() => setIsSuccess(false)}
             >
-              Nao recebeu? Enviar novamente
+              Não recebeu? Enviar novamente
             </Button>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function EsqueciSenhaPage() {
             </div>
             <h2 className="text-2xl font-bold text-foreground">Esqueceu sua senha?</h2>
             <p className="mt-2 text-muted-foreground">
-              Sem problemas! Digite seu email abaixo e enviaremos um link para voce redefinir sua senha.
+              Sem problemas! Digite seu email abaixo e enviaremos um link para você redefinir sua senha.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function EsqueciSenhaPage() {
                   Enviando...
                 </>
               ) : (
-                "Enviar link de recuperacao"
+                "Enviar link de recuperação"
               )}
             </Button>
           </form>

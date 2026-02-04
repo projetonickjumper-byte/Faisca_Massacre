@@ -28,27 +28,27 @@ function calculateIMC(weight: number, height: number): IMCResult | null {
   if (imc < 18.5) {
     classification = "Abaixo do peso"
     color = "text-blue-400"
-    description = "Procure um nutricionista para ganhar peso de forma saudavel."
+    description = "Procure um nutricionista para ganhar peso de forma saudável."
   } else if (imc < 25) {
     classification = "Peso normal"
     color = "text-green-400"
-    description = "Parabens! Mantenha seus habitos saudaveis."
+    description = "Parabéns! Mantenha seus hábitos saudáveis."
   } else if (imc < 30) {
     classification = "Sobrepeso"
     color = "text-yellow-400"
-    description = "Atencao! Considere ajustar dieta e exercicios."
+    description = "Atenção! Considere ajustar dieta e exercícios."
   } else if (imc < 35) {
     classification = "Obesidade Grau I"
     color = "text-orange-400"
-    description = "Recomenda-se acompanhamento medico e nutricional."
+    description = "Recomenda-se acompanhamento médico e nutricional."
   } else if (imc < 40) {
     classification = "Obesidade Grau II"
     color = "text-red-400"
-    description = "Importante buscar orientacao medica especializada."
+    description = "Importante buscar orientação médica especializada."
   } else {
     classification = "Obesidade Grau III"
     color = "text-red-500"
-    description = "Procure ajuda medica urgente para sua saude."
+    description = "Procure ajuda médica urgente para sua saúde."
   }
   
   return { value: imc, classification, color, description }
@@ -82,7 +82,7 @@ export function IMCCalculator() {
             </div>
             <div>
               <CardTitle className="text-base">Calculadora de IMC</CardTitle>
-              <CardDescription className="text-xs">Indice de Massa Corporal</CardDescription>
+              <CardDescription className="text-xs">Índice de Massa Corporal</CardDescription>
             </div>
           </div>
         </div>

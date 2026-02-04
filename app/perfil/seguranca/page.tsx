@@ -30,8 +30,8 @@ import {
 } from "@/components/ui/alert-dialog"
 
 const activeSessions = [
-  { id: "1", device: "iPhone 14 Pro", location: "Sao Paulo, SP", lastActive: "Agora", current: true },
-  { id: "2", device: "MacBook Pro", location: "Sao Paulo, SP", lastActive: "Há 2 horas", current: false },
+  { id: "1", device: "iPhone 14 Pro", location: "São Paulo, SP", lastActive: "Agora", current: true },
+  { id: "2", device: "MacBook Pro", location: "São Paulo, SP", lastActive: "Há 2 horas", current: false },
   { id: "3", device: "Windows PC", location: "Rio de Janeiro, RJ", lastActive: "Há 3 dias", current: false },
 ]
 
@@ -76,7 +76,7 @@ export default function SegurancaPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">Senha</p>
-                  <p className="text-sm text-muted-foreground">Ultima alteracao há 30 dias</p>
+                  <p className="text-sm text-muted-foreground">Última alteração há 30 dias</p>
                 </div>
               </div>
               <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
@@ -160,7 +160,7 @@ export default function SegurancaPage() {
           {/* Security Options */}
           <div className="rounded-xl bg-card border border-border overflow-hidden">
             <div className="p-4 border-b border-border">
-              <h2 className="font-semibold text-foreground">Opcoes de Seguranca</h2>
+              <h2 className="font-semibold text-foreground">Opções de Segurança</h2>
             </div>
             <div className="divide-y divide-border">
               <div className="flex items-center justify-between p-4">
@@ -170,9 +170,9 @@ export default function SegurancaPage() {
                   </div>
                   <div>
                     <Label htmlFor="2fa" className="font-medium text-foreground">
-                      Autenticacao em 2 Fatores
+                      Autenticação em 2 Fatores
                     </Label>
-                    <p className="text-sm text-muted-foreground">Adicione uma camada extra de seguranca</p>
+                    <p className="text-sm text-muted-foreground">Adicione uma camada extra de segurança</p>
                   </div>
                 </div>
                 <Switch
@@ -189,7 +189,7 @@ export default function SegurancaPage() {
                   </div>
                   <div>
                     <Label htmlFor="biometric" className="font-medium text-foreground">
-                      Login Biometrico
+                      Login Biométrico
                     </Label>
                     <p className="text-sm text-muted-foreground">Use sua digital ou Face ID</p>
                   </div>
@@ -207,7 +207,7 @@ export default function SegurancaPage() {
           <div className="rounded-xl bg-card border border-border overflow-hidden">
             <div className="p-4 border-b border-border flex items-center justify-between">
               <div>
-                <h2 className="font-semibold text-foreground">Sessoes Ativas</h2>
+                <h2 className="font-semibold text-foreground">Sessões Ativas</h2>
                 <p className="text-sm text-muted-foreground">{sessions.length} dispositivo(s) conectado(s)</p>
               </div>
               {sessions.length > 1 && (
@@ -219,9 +219,9 @@ export default function SegurancaPage() {
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Encerrar Todas as Sessoes</AlertDialogTitle>
+                      <AlertDialogTitle>Encerrar Todas as Sessões</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Isso ira desconectar todos os outros dispositivos. Voce precisara fazer login novamente neles.
+                        Isso irá desconectar todos os outros dispositivos. Você precisará fazer login novamente neles.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -282,7 +282,7 @@ export default function SegurancaPage() {
           <div className="rounded-xl border border-destructive/50 p-4">
             <h2 className="font-semibold text-destructive mb-2">Zona de Perigo</h2>
             <p className="text-sm text-muted-foreground mb-4">
-              Acoes irreversiveis para sua conta
+              Ações irreversíveis para sua conta
             </p>
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -294,7 +294,7 @@ export default function SegurancaPage() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Excluir Conta</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Esta acao e permanente e nao pode ser desfeita. Todos os seus dados, historico, conquistas e XP serao perdidos.
+                    Esta ação é permanente e não pode ser desfeita. Todos os seus dados, histórico, conquistas e XP serão perdidos.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

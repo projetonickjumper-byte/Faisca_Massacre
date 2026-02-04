@@ -149,7 +149,7 @@ export default function ExplorarPage() {
                     {/* Price Range */}
                     <div>
                       <h3 className="font-semibold mb-3">
-                        Preco Day Use: R$ {priceRange[0]} - R$ {priceRange[1]}
+                        Preço Day Use: R$ {priceRange[0]} - R$ {priceRange[1]}
                       </h3>
                       <Slider
                         value={priceRange}
@@ -162,7 +162,7 @@ export default function ExplorarPage() {
 
                     {/* Rating */}
                     <div>
-                      <h3 className="font-semibold mb-3">Avaliacao Minima</h3>
+                      <h3 className="font-semibold mb-3">Avaliação Mínima</h3>
                       <div className="flex gap-2 flex-wrap">
                         {[0, 3, 3.5, 4, 4.5].map((rating) => (
                           <Button
@@ -278,7 +278,7 @@ export default function ExplorarPage() {
                 {/* Price Range */}
                 <div className="space-y-3">
                   <h3 className="font-medium text-sm text-muted-foreground">
-                    Preco Day Use
+                    Preço Day Use
                   </h3>
                   <p className="text-sm">R$ {priceRange[0]} - R$ {priceRange[1]}</p>
                   <Slider
@@ -291,7 +291,7 @@ export default function ExplorarPage() {
 
                 {/* Rating */}
                 <div className="space-y-3">
-                  <h3 className="font-medium text-sm text-muted-foreground">Avaliacao Minima</h3>
+                  <h3 className="font-medium text-sm text-muted-foreground">Avaliação Mínima</h3>
                   <div className="flex gap-2 flex-wrap">
                     {[0, 3, 3.5, 4, 4.5].map((rating) => (
                       <Button

@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils"
 import { useAuth } from "@/lib/auth-context"
 
 const publicNavItems = [
-  { href: "/", icon: Home, label: "Inicio" },
+  { href: "/", icon: Home, label: "Início" },
   { href: "/explorar", icon: Search, label: "Buscar" },
 ]
 
 const authNavItems = [
   { href: "/ferramentas", icon: Wrench, label: "Ferramentas" },
   { href: "/meus-treinos", icon: Dumbbell, label: "Treinos" },
-  { href: "/minhas-avaliacoes", icon: ClipboardList, label: "Avaliacoes" },
+  { href: "/minhas-avaliacoes", icon: ClipboardList, label: "Avaliações" },
   { href: "/reservas", icon: Calendar, label: "Reservas" },
 ]
 
@@ -22,7 +22,7 @@ export function BottomNav() {
   const pathname = usePathname()
   const { isAuthenticated } = useAuth()
 
-  // Nao mostrar na pagina de login/cadastro
+  // Não mostrar na página de login/cadastro
   if (pathname === "/login" || pathname === "/cadastro" || pathname === "/esqueci-senha") {
     return null
   }
@@ -49,7 +49,7 @@ export function BottomNav() {
           )
         })}
         
-        {/* Ultimo item: Perfil ou Login */}
+        {/* Último item: Perfil ou Login */}
         {isAuthenticated ? (
           <Link
             href="/perfil"

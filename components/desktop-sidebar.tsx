@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "@/lib/auth-context"
 
 const publicNavItems = [
-  { href: "/", icon: Home, label: "Inicio" },
+  { href: "/", icon: Home, label: "Início" },
   { href: "/explorar", icon: Search, label: "Explorar" },
   { href: "/mapa", icon: MapPin, label: "Mapa" },
 ]
@@ -23,9 +23,9 @@ const userNavItems = [
   { href: "/perfil", icon: User, label: "Meu Perfil" },
   { href: "/ferramentas", icon: Wrench, label: "Ferramentas" },
   { href: "/meus-treinos", icon: Dumbbell, label: "Meus Treinos" },
-  { href: "/minhas-avaliacoes", icon: ClipboardList, label: "Minhas Avaliacoes" },
+  { href: "/minhas-avaliacoes", icon: ClipboardList, label: "Minhas Avaliações" },
   { href: "/perfil/favoritos", icon: Heart, label: "Favoritos" },
-  { href: "/perfil/configuracoes", icon: Settings, label: "Configuracoes" },
+  { href: "/perfil/configuracoes", icon: Settings, label: "Configurações" },
 ]
 
 export function DesktopSidebar() {
@@ -103,12 +103,12 @@ export function DesktopSidebar() {
               className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-secondary"
             >
               <Avatar className="h-10 w-10 border-2 border-primary">
-                <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name || "Usuario"} />
+                <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name || "Usuário"} />
                 <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">
                 <p className="truncate text-sm font-medium text-foreground">{user?.name}</p>
-                <p className="truncate text-xs text-muted-foreground">Nivel {user?.level}</p>
+                <p className="truncate text-xs text-muted-foreground">Nível {user?.level}</p>
               </div>
             </Link>
             <button

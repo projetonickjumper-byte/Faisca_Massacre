@@ -36,7 +36,7 @@ interface Goal {
 
 const CATEGORIES = [
   { value: "treino", label: "Treino", color: "text-green-400" },
-  { value: "nutricao", label: "Nutricao", color: "text-orange-400" },
+  { value: "nutricao", label: "Nutrição", color: "text-orange-400" },
   { value: "peso", label: "Peso", color: "text-blue-400" },
   { value: "outro", label: "Outro", color: "text-purple-400" },
 ]

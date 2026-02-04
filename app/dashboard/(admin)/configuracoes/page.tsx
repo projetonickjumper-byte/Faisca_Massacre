@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
 import {
   Settings,
   Bell,
@@ -67,7 +66,7 @@ export default function ConfiguracoesPage() {
               onCheckedChange={(checked) => setSettings({ ...settings, emailNotificacoes: checked })}
             />
           </div>
-          <Separator />
+          <div className="border-t" />
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>Notificações Push</Label>
@@ -78,7 +77,7 @@ export default function ConfiguracoesPage() {
               onCheckedChange={(checked) => setSettings({ ...settings, pushNotificacoes: checked })}
             />
           </div>
-          <Separator />
+          <div className="border-t" />
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>Novo Cadastro de Empresa</Label>
@@ -89,7 +88,7 @@ export default function ConfiguracoesPage() {
               onCheckedChange={(checked) => setSettings({ ...settings, notificacaoNovaCadastro: checked })}
             />
           </div>
-          <Separator />
+          <div className="border-t" />
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>Alertas de Pagamento</Label>
@@ -170,7 +169,7 @@ export default function ConfiguracoesPage() {
               onCheckedChange={(checked) => setSettings({ ...settings, manutencao: checked })}
             />
           </div>
-          <Separator />
+          <div className="border-t" />
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label>Backup Automático</Label>
@@ -181,7 +180,7 @@ export default function ConfiguracoesPage() {
               onCheckedChange={(checked) => setSettings({ ...settings, backupAutomatico: checked })}
             />
           </div>
-          <Separator />
+          <div className="border-t" />
           <div className="flex items-center gap-4">
             <Button variant="outline">
               <RefreshCw className="w-4 h-4 mr-2" />

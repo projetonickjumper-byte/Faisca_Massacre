@@ -200,11 +200,13 @@ export default function AdminDashboardPage() {
                   <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
+                      backgroundColor: "hsl(var(--popover))",
                       border: "1px solid hsl(var(--border))",
                       borderRadius: "8px",
+                      color: "hsl(var(--popover-foreground))",
                     }}
-                    labelStyle={{ color: "hsl(var(--foreground))" }}
+                    labelStyle={{ color: "hsl(var(--popover-foreground))" }}
+                    itemStyle={{ color: "hsl(var(--popover-foreground))" }}
                   />
                   <Area
                     type="monotone"
@@ -239,11 +241,13 @@ export default function AdminDashboardPage() {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
+                      backgroundColor: "hsl(var(--popover))",
                       border: "1px solid hsl(var(--border))",
                       borderRadius: "8px",
+                      color: "hsl(var(--popover-foreground))",
                     }}
-                    labelStyle={{ color: "hsl(var(--foreground))" }}
+                    labelStyle={{ color: "hsl(var(--popover-foreground))" }}
+                    itemStyle={{ color: "hsl(var(--popover-foreground))" }}
                     formatter={(value: number) => [formatCurrency(value), "Faturamento"]}
                   />
                   <Bar dataKey="valor" fill="hsl(var(--success))" radius={[4, 4, 0, 0]} />

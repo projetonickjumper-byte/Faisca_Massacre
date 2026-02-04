@@ -15,6 +15,8 @@ export { assessmentsService } from "./services/assessments.service"
 export { studentsService } from "./services/students.service"
 export { gymsService } from "./services/gyms.service"
 export { adminService } from "./services/admin.service"
+export { ordersService } from "./services/orders.service"
+export type { ServiceOrder, CreateOrderDTO, OrderFilters } from "./services/orders.service"
 
 // ============================================================
 // INSTRUÇÕES PARA INTEGRAÇÃO COM BACKEND

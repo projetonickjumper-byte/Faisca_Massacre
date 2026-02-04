@@ -22,6 +22,7 @@ import {
   ChevronDown,
   Dumbbell,
   ClipboardList,
+  ShoppingCart,
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -39,6 +40,7 @@ import { useAuth } from "@/lib/auth-context"
 
 const sidebarItems = [
   { href: "/parceiro/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/parceiro/pedidos", icon: ShoppingCart, label: "Pedidos", badge: true },
   { href: "/parceiro/agenda", icon: Calendar, label: "Agenda" },
   { href: "/parceiro/treinos", icon: Dumbbell, label: "Treinos" },
   { href: "/parceiro/avaliacao-fisica", icon: ClipboardList, label: "Avaliação Física" },

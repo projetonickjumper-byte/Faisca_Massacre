@@ -48,6 +48,16 @@ const categoryNames: Record<string, string> = {
   crossfit: "Crossfit",
 }
 
+// Mapeamento de categorias para modalidades relacionadas
+const categoryModalityMap: Record<string, string[]> = {
+  academias: ["musculação", "musculacao", "cardio", "funcional", "spinning", "yoga", "pilates", "hiit", "crossfit"],
+  studios: ["pilates", "yoga", "funcional", "personal", "treino personalizado"],
+  lutas: ["boxe", "muay thai", "jiu-jitsu", "jiu jitsu", "karate", "taekwondo", "mma", "judô", "judo", "luta", "artes marciais"],
+  pilates: ["pilates", "alongamento", "flexibilidade"],
+  dancas: ["dança", "danca", "zumba", "ballet", "salsa", "forró", "forro", "hip hop", "jazz"],
+  crossfit: ["crossfit", "hiit", "funcional", "levantamento olímpico", "levantamento olimpico", "wod"],
+}
+
 function BuscarContent() {
   const searchParams = useSearchParams()
   const categoriaParam = searchParams.get("categoria")
@@ -79,12 +89,17 @@ function BuscarContent() {
 
       const matchesCategory =
         selectedCategories.length === 0 ||
-        gym.modalities.some((mod) => 
-          selectedCategories.some(cat => 
-            mod.toLowerCase().includes(cat.toLowerCase()) ||
-            cat.toLowerCase().includes(mod.toLowerCase().replace("ção", "cao").replace("á", "a"))
-          )
-        )
+        selectedCategories.some(cat => {
+          // Se for "academias", mostra todas (academias é a categoria geral)
+          if (cat === "academias") return true
+          
+          // Verifica se alguma modalidade da academia corresponde à categoria
+          const relatedModalities = categoryModalityMap[cat] || []
+          return gym.modalities.some((mod) => {
+            const modLower = mod.toLowerCase()
+            return relatedModalities.some(related => modLower.includes(related) || related.includes(modLower))
+          })
+        })
 
       const dayUsePrice = gym.dayUse?.price ?? 0
       const matchesPrice =

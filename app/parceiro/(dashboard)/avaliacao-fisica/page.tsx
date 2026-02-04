@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
+import Link from "next/link"
 import {
   Search,
   Plus,
@@ -18,6 +20,10 @@ import {
   Eye,
   FileText,
   Download,
+  ArrowLeft,
+  Link as LinkIcon,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -49,6 +55,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 interface PhysicalAssessment {
   id: string
@@ -221,17 +228,34 @@ const mockClients = [
   { id: "c5", name: "Julia Ferreira", avatar: null },
 ]
 
-export default function AvaliacaoFisicaPage() {
+function AvaliacaoFisicaContent() {
+  const searchParams = useSearchParams()
+  
+  // Parâmetros vindos da página de pedidos (integração entre ecossistemas)
+  const clientIdFromOrder = searchParams.get("clientId")
+  const clientNameFromOrder = searchParams.get("clientName")
+  const orderIdFromOrder = searchParams.get("orderId")
+  
   const [assessments, setAssessments] = useState<PhysicalAssessment[]>(mockAssessments)
   const [search, setSearch] = useState("")
   const [clientFilter, setClientFilter] = useState("all")
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [selectedAssessment, setSelectedAssessment] = useState<PhysicalAssessment | null>(null)
   const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [showOrderLinkedSuccess, setShowOrderLinkedSuccess] = useState(false)
+
+  // Se veio de um pedido, abre o modal de criação automaticamente
+  useEffect(() => {
+    if (clientIdFromOrder && clientNameFromOrder) {
+      setIsCreateModalOpen(true)
+      // Pré-seleciona o cliente se veio de um pedido
+      setNewAssessment(prev => ({ ...prev, clientId: clientIdFromOrder }))
+    }
+  }, [clientIdFromOrder, clientNameFromOrder])
 
   // Form state for new assessment
   const [newAssessment, setNewAssessment] = useState({
-    clientId: "",
+    clientId: clientIdFromOrder || "",
     measurements: {
       weight: 0,
       height: 0,
@@ -289,13 +313,20 @@ export default function AvaliacaoFisicaPage() {
   }
 
   const createAssessment = () => {
-    const client = mockClients.find(c => c.id === newAssessment.clientId)
+    // Se veio de um pedido, usa o nome do cliente do pedido
+    let client = mockClients.find(c => c.id === newAssessment.clientId)
+    
+    // Se o cliente não existe no mock mas veio de um pedido, cria um temporário
+    if (!client && clientIdFromOrder && clientNameFromOrder) {
+      client = { id: clientIdFromOrder, name: clientNameFromOrder, avatar: null }
+    }
+    
     if (!client) return
 
     const imc = calculateIMC(newAssessment.measurements.weight, newAssessment.measurements.height)
     const assessment: PhysicalAssessment = {
       id: `a-${Date.now()}`,
-      clientId: newAssessment.clientId,
+      clientId: client.id,
       clientName: client.name,
       clientAvatar: client.avatar,
       date: new Date().toISOString().split("T")[0],
@@ -307,6 +338,13 @@ export default function AvaliacaoFisicaPage() {
     }
     setAssessments(prev => [assessment, ...prev])
     setIsCreateModalOpen(false)
+    
+    // Se veio de um pedido, mostra mensagem de sucesso
+    if (orderIdFromOrder) {
+      setShowOrderLinkedSuccess(true)
+      setTimeout(() => setShowOrderLinkedSuccess(false), 5000)
+    }
+    
     setNewAssessment({
       clientId: "",
       measurements: {
@@ -326,6 +364,45 @@ export default function AvaliacaoFisicaPage() {
 
   return (
     <div className="space-y-6">
+      {/* Banner de contexto quando vem de um pedido */}
+      {clientIdFromOrder && clientNameFromOrder && (
+        <Alert className="border-primary/50 bg-primary/5">
+          <User className="h-4 w-4" />
+          <AlertTitle className="flex items-center gap-2">
+            Realizando avaliação para cliente
+            {orderIdFromOrder && (
+              <Badge variant="outline" className="text-xs">
+                <LinkIcon className="mr-1 h-3 w-3" />
+                Pedido vinculado
+              </Badge>
+            )}
+          </AlertTitle>
+          <AlertDescription className="flex items-center justify-between">
+            <span>
+              Você está realizando uma avaliação física para <strong>{clientNameFromOrder}</strong>.
+              A avaliação será vinculada automaticamente ao cliente.
+            </span>
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/parceiro/pedidos">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Voltar aos pedidos
+              </Link>
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {/* Mensagem de sucesso ao vincular */}
+      {showOrderLinkedSuccess && (
+        <Alert className="border-green-500/50 bg-green-500/5">
+          <CheckCircle2 className="h-4 w-4 text-green-500" />
+          <AlertTitle>Avaliação registrada com sucesso!</AlertTitle>
+          <AlertDescription>
+            A avaliação física foi vinculada automaticamente ao cliente {clientNameFromOrder}.
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -981,5 +1058,18 @@ export default function AvaliacaoFisicaPage() {
         </DialogContent>
       </Dialog>
     </div>
+  )
+}
+
+// Export default com Suspense para lidar com useSearchParams
+export default function AvaliacaoFisicaPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    }>
+      <AvaliacaoFisicaContent />
+    </Suspense>
   )
 }

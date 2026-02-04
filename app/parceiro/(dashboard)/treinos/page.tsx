@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import {
   Search,
   Plus,
@@ -17,7 +18,13 @@ import {
   ChevronDown,
   ChevronUp,
   X,
+  AlertCircle,
+  CheckCircle2,
+  User,
+  ArrowLeft,
+  Link as LinkIcon,
 } from "lucide-react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -48,6 +55,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 interface Exercise {
   id: string
@@ -183,7 +191,14 @@ const exerciseLibrary = [
   { name: "Abdominal", category: "Core" },
 ]
 
-export default function TreinosPage() {
+function TreinosContent() {
+  const searchParams = useSearchParams()
+  
+  // Parâmetros vindos da página de pedidos (integração entre ecossistemas)
+  const clientIdFromOrder = searchParams.get("clientId")
+  const clientNameFromOrder = searchParams.get("clientName")
+  const orderIdFromOrder = searchParams.get("orderId")
+  
   const [workouts, setWorkouts] = useState<Workout[]>(mockWorkouts)
   const [search, setSearch] = useState("")
   const [objectiveFilter, setObjectiveFilter] = useState("all")
@@ -192,6 +207,14 @@ export default function TreinosPage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [isAssignModalOpen, setIsAssignModalOpen] = useState(false)
   const [selectedWorkout, setSelectedWorkout] = useState<Workout | null>(null)
+  const [showOrderLinkedSuccess, setShowOrderLinkedSuccess] = useState(false)
+  
+  // Se veio de um pedido, abre o modal de criação automaticamente
+  useEffect(() => {
+    if (clientIdFromOrder && clientNameFromOrder) {
+      setIsCreateModalOpen(true)
+    }
+  }, [clientIdFromOrder, clientNameFromOrder])
   
   // Form state for new workout
   const [newWorkout, setNewWorkout] = useState({
@@ -263,15 +286,27 @@ export default function TreinosPage() {
   }
 
   const createWorkout = () => {
+    // Se veio de um pedido, já vincula o cliente automaticamente
+    const assignedClients = clientIdFromOrder && clientNameFromOrder 
+      ? [{ id: clientIdFromOrder, name: clientNameFromOrder, avatar: null }]
+      : []
+    
     const workout: Workout = {
       id: `w-${Date.now()}`,
       ...newWorkout,
-      assignedTo: [],
+      assignedTo: assignedClients,
       createdAt: new Date().toISOString().split("T")[0],
       updatedAt: new Date().toISOString().split("T")[0],
     }
     setWorkouts(prev => [workout, ...prev])
     setIsCreateModalOpen(false)
+    
+    // Se veio de um pedido, mostra mensagem de sucesso
+    if (orderIdFromOrder) {
+      setShowOrderLinkedSuccess(true)
+      setTimeout(() => setShowOrderLinkedSuccess(false), 5000)
+    }
+    
     setNewWorkout({
       name: "",
       description: "",
@@ -312,6 +347,45 @@ export default function TreinosPage() {
 
   return (
     <div className="space-y-6">
+      {/* Banner de contexto quando vem de um pedido */}
+      {clientIdFromOrder && clientNameFromOrder && (
+        <Alert className="border-primary/50 bg-primary/5">
+          <User className="h-4 w-4" />
+          <AlertTitle className="flex items-center gap-2">
+            Criando treino para cliente
+            {orderIdFromOrder && (
+              <Badge variant="outline" className="text-xs">
+                <LinkIcon className="mr-1 h-3 w-3" />
+                Pedido vinculado
+              </Badge>
+            )}
+          </AlertTitle>
+          <AlertDescription className="flex items-center justify-between">
+            <span>
+              Você está criando um treino personalizado para <strong>{clientNameFromOrder}</strong>.
+              O treino será vinculado automaticamente ao cliente.
+            </span>
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/parceiro/pedidos">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Voltar aos pedidos
+              </Link>
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {/* Mensagem de sucesso ao vincular */}
+      {showOrderLinkedSuccess && (
+        <Alert className="border-green-500/50 bg-green-500/5">
+          <CheckCircle2 className="h-4 w-4 text-green-500" />
+          <AlertTitle>Treino criado com sucesso!</AlertTitle>
+          <AlertDescription>
+            O treino foi vinculado automaticamente ao cliente {clientNameFromOrder}.
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -840,5 +914,18 @@ function AssignWorkoutContent({
         </Button>
       </DialogFooter>
     </div>
+  )
+}
+
+// Export default com Suspense para lidar com useSearchParams
+export default function TreinosPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    }>
+      <TreinosContent />
+    </Suspense>
   )
 }

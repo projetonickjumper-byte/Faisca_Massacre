@@ -118,6 +118,22 @@ export const API_CONFIG = {
       USERS: "/admin/users",
       REVENUE: "/admin/revenue",
     },
+
+    // Pedidos/Aquisições (integração entre ecossistemas)
+    ORDERS: {
+      LIST: "/orders",
+      GET: (id: string) => `/orders/${id}`,
+      CREATE: "/orders",
+      CONFIRM: (id: string) => `/orders/${id}/confirm`,
+      START: (id: string) => `/orders/${id}/start`,
+      COMPLETE: (id: string) => `/orders/${id}/complete`,
+      CANCEL: (id: string) => `/orders/${id}/cancel`,
+      STATS: "/orders/stats",
+      BY_PARTNER: (partnerId: string) => `/orders/partner/${partnerId}`,
+      BY_USER: (userId: string) => `/orders/user/${userId}`,
+      LINK_WORKOUT: (id: string) => `/orders/${id}/link-workout`,
+      LINK_ASSESSMENT: (id: string) => `/orders/${id}/link-assessment`,
+    },
   },
 }
 

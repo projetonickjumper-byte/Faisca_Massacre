@@ -27,7 +27,7 @@ export function GymTabs({ activeTab, onTabChange }: GymTabsProps) {
   }
 
   return (
-    <div className="sticky top-16 z-40 -mx-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
+    <div className="sticky top-0 z-40 -mx-4 bg-zinc-950 border-b border-zinc-800 shadow-lg shadow-black/20">
       <div className="flex overflow-x-auto scrollbar-hide px-4">
         {tabs.map((tab) => (
           <button
@@ -35,15 +35,15 @@ export function GymTabs({ activeTab, onTabChange }: GymTabsProps) {
             type="button"
             onClick={() => handleClick(tab.id)}
             className={cn(
-              "relative shrink-0 px-4 py-3 text-sm font-medium transition-colors",
+              "relative shrink-0 px-4 py-3.5 text-sm font-medium transition-all duration-200",
               activeTab === tab.id
-                ? "text-primary"
-                : "text-muted-foreground hover:text-foreground"
+                ? "text-orange-500"
+                : "text-zinc-400 hover:text-zinc-200"
             )}
           >
             {tab.label}
             {activeTab === tab.id && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+              <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full" />
             )}
           </button>
         ))}

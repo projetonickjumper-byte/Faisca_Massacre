@@ -1,11 +1,23 @@
 "use client"
 
 import React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Eye, EyeOff, Loader2, Dumbbell } from "lucide-react"
+import { 
+  Eye, 
+  EyeOff, 
+  Dumbbell, 
+  Lock, 
+  Mail, 
+  ArrowRight,
+  MapPin,
+  Calendar,
+  Trophy,
+  Sparkles,
+  Star,
+  Users
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -37,110 +49,209 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Header decorativo */}
-      <div className="relative h-48 bg-gradient-to-br from-primary/30 via-primary/10 to-background flex items-center justify-center">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-        </div>
-        <div className="relative z-10 flex flex-col items-center gap-3">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/25">
-            <Dumbbell className="h-8 w-8 text-primary-foreground" />
+    <div className="min-h-screen flex bg-zinc-950">
+      {/* Left Panel - Decorative */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" 
+             style={{ 
+               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
+             }}
+        />
+        
+        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/25">
+                <Dumbbell className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-semibold text-zinc-100">FitApp</span>
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">FitApp</h1>
+          
+          <div className="max-w-md">
+            <h1 className="text-4xl font-bold text-zinc-100 leading-tight mb-4">
+              Sua jornada fitness
+              <span className="text-orange-500"> começa aqui</span>
+            </h1>
+            <p className="text-zinc-400 text-lg mb-8">
+              Encontre academias, agende aulas e acompanhe sua evolução em um só lugar.
+            </p>
+            
+            {/* Feature Cards */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
+                <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-zinc-200">Academias perto de você</h3>
+                  <p className="text-sm text-zinc-500">Encontre locais próximos com facilidade</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
+                <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                  <Calendar className="w-5 h-5 text-blue-500" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-zinc-200">Agende em segundos</h3>
+                  <p className="text-sm text-zinc-500">Aulas, avaliações e Day Use</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
+                <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center">
+                  <Trophy className="w-5 h-5 text-emerald-500" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-zinc-200">Ganhe recompensas</h3>
+                  <p className="text-sm text-zinc-500">XP, conquistas e benefícios exclusivos</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Stats */}
+            <div className="mt-8 flex items-center gap-6">
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-zinc-100">500+</span>
+                <span className="text-xs text-zinc-500">Academias</span>
+              </div>
+              <div className="w-px h-10 bg-zinc-800" />
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-zinc-100">50K+</span>
+                <span className="text-xs text-zinc-500">Usuários ativos</span>
+              </div>
+              <div className="w-px h-10 bg-zinc-800" />
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-zinc-100">4.8</span>
+                <div className="flex items-center gap-1">
+                  <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
+                  <span className="text-xs text-zinc-500">Avaliação</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-sm text-zinc-600">
+            2026 FitApp. Todos os direitos reservados.
+          </div>
         </div>
       </div>
-
-      {/* Formulario */}
-      <div className="flex-1 px-6 py-8">
-        <div className="mx-auto max-w-sm">
-          <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold text-foreground">Bem-vindo de volta</h2>
-            <p className="mt-2 text-muted-foreground">
-              Entre na sua conta para continuar
-            </p>
+      
+      {/* Right Panel - Login Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <div className="flex flex-col items-center mb-8 lg:hidden">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/25">
+                <Dumbbell className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-semibold text-zinc-100">FitApp</span>
+            </div>
+            <p className="text-sm text-zinc-500">Encontre sua academia ideal</p>
           </div>
-
+          
+          <div className="mb-8 hidden lg:block">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-2">Bem-vindo de volta</h2>
+            <p className="text-zinc-500">Entre na sua conta para continuar</p>
+          </div>
+          
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
-              <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-xs">!</span>
+                </div>
                 {error}
               </div>
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-card border-border"
-              />
+              <Label htmlFor="email" className="text-zinc-300 text-sm">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10 h-11 bg-zinc-900 border-zinc-800 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-orange-500/50 focus-visible:border-orange-500/50 transition-all"
+                  required
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Senha</Label>
-                <Link 
-                  href="/esqueci-senha" 
-                  className="text-xs text-primary hover:underline"
+                <Label htmlFor="password" className="text-zinc-300 text-sm">Senha</Label>
+                <Link
+                  href="/esqueci-senha"
+                  className="text-xs text-orange-500 hover:text-orange-400 transition-colors"
                 >
                   Esqueceu a senha?
                 </Link>
               </div>
               <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="********"
+                  placeholder="Sua senha"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10 pr-10 h-11 bg-zinc-900 border-zinc-800 text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-1 focus-visible:ring-orange-500/50 focus-visible:border-orange-500/50 transition-all"
                   required
-                  className="bg-card border-border pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
 
             <Button 
               type="submit" 
-              className="w-full" 
-              size="lg"
+              className="w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40" 
               disabled={isSubmitting}
             >
               {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Entrando...
-                </>
+                </div>
               ) : (
-                "Entrar"
+                <div className="flex items-center gap-2">
+                  Entrar
+                  <ArrowRight className="w-4 h-4" />
+                </div>
               )}
             </Button>
           </form>
 
-          <div className="mt-6">
+          <div className="mt-8 space-y-4">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-border" />
+                <div className="w-full border-t border-zinc-800" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">ou</span>
+                <span className="bg-zinc-950 px-3 text-zinc-600">ou continue com</span>
               </div>
             </div>
 
-            <div className="mt-6 space-y-3">
-              <Button variant="outline" className="w-full bg-transparent" size="lg">
+            <div className="grid grid-cols-2 gap-3">
+              <Button 
+                variant="outline" 
+                className="h-11 bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition-all"
+              >
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
@@ -159,23 +270,55 @@ export default function LoginPage() {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Continuar com Google
+                Google
               </Button>
-              <Button variant="outline" className="w-full bg-transparent" size="lg">
+              <Button 
+                variant="outline" 
+                className="h-11 bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition-all"
+              >
                 <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z" />
                 </svg>
-                Continuar com Facebook
+                Facebook
               </Button>
             </div>
           </div>
 
-          <p className="mt-8 text-center text-sm text-muted-foreground">
-            Não tem uma conta?{" "}
-            <Link href="/cadastro" className="font-medium text-primary hover:underline">
-              Cadastre-se
+          <p className="mt-8 text-center text-sm text-zinc-500">
+            Ainda não tem uma conta?{" "}
+            <Link href="/cadastro" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
+              Cadastre-se gratuitamente
             </Link>
           </p>
+
+          <div className="mt-6 pt-6 border-t border-zinc-800">
+            <div className="flex items-center justify-center gap-6">
+              <Link 
+                href="/parceiro/login" 
+                className="text-sm text-zinc-500 hover:text-orange-500 transition-colors inline-flex items-center gap-1.5"
+              >
+                <Users className="w-3.5 h-3.5" />
+                Sou parceiro
+              </Link>
+              <div className="w-px h-4 bg-zinc-800" />
+              <Link 
+                href="/" 
+                className="text-sm text-zinc-500 hover:text-orange-500 transition-colors inline-flex items-center gap-1.5"
+              >
+                <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                Voltar ao site
+              </Link>
+            </div>
+          </div>
+
+          {/* Credentials hint for demo */}
+          <div className="mt-6 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50">
+            <p className="text-xs text-zinc-500 text-center">
+              <span className="text-zinc-400 font-medium">Credenciais de teste:</span>
+              <br />
+              user@fitapp.com / user123
+            </p>
+          </div>
         </div>
       </div>
     </div>

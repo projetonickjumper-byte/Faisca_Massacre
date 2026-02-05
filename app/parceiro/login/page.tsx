@@ -300,13 +300,13 @@ export default function PartnerLoginPage() {
           </div>
 
           {/* Credentials hint for demo */}
-          <div className="mt-6 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50">
-            <p className="text-xs text-zinc-500 text-center">
+        
+          
              
             
         
-            </p>
-          </div>
+           
+         
         </div>
       </div>
     </div>

@@ -23,8 +23,14 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="absolute inset-0 bg-orange-500/20 rounded-full blur-xl animate-pulse" />
+            <Loader2 className="relative h-10 w-10 animate-spin text-orange-500" />
+          </div>
+          <p className="text-zinc-500">Carregando...</p>
+        </div>
       </div>
     )
   }
@@ -57,7 +63,7 @@ export default function ProfilePage() {
 
   return (
     <AppShell>
-      <div className="min-h-screen bg-background pb-20 lg:pb-8">
+      <div className="min-h-screen bg-zinc-950 pb-20 lg:pb-8">
         <Header />
 
         <main className="mx-auto max-w-4xl">

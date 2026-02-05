@@ -11,11 +11,11 @@ import { banners, categories, gyms, promotions } from "@/lib/data"
 export default function HomePage() {
   return (
     <AppShell>
-      <div className="min-h-screen bg-background pb-20 lg:pb-8">
+      <div className="min-h-screen bg-zinc-950 pb-20 lg:pb-8">
         <Header />
 
         <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="space-y-6 lg:space-y-8">
+          <div className="space-y-8 lg:space-y-10">
             {/* Welcome Card - full width */}
             <WelcomeCard />
             
@@ -25,7 +25,7 @@ export default function HomePage() {
 
             <PromotionsSection promotions={promotions} />
 
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               <NearbySection gyms={gyms} />
               <TopRatedSection gyms={gyms} />
             </div>

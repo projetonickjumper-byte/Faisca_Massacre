@@ -211,7 +211,7 @@ export default function ReservasPage() {
 
   return (
     <AppShell>
-      <div className="min-h-screen bg-background pb-20 lg:pb-8">
+      <div className="min-h-screen bg-background pb-24 lg:pb-8">
         <Header />
 
         <main className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">

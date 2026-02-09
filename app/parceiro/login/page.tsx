@@ -300,6 +300,14 @@ export default function PartnerLoginPage() {
           </div>
 
 
+          {/* Credentials hint for demo */}
+        
+          
+             
+            
+        
+           
+         
         </div>
       </div>
     </div>

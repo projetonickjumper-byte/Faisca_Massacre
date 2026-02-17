@@ -2,11 +2,13 @@
 // Quando o backend estiver pronto, basta alterar essas configurações
 
 export const API_CONFIG = {
-  // Base URL da API - altere para a URL do seu backend
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || "",
+  // Base URL da API - defina NEXT_PUBLIC_API_URL no .env.local do frontend
+  // Ex: NEXT_PUBLIC_API_URL=http://IP_DA_SUA_VPS:3001
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001",
   
   // Se true, usa dados mockados. Se false, faz chamadas reais à API
-  USE_MOCK: true,
+  // Mude para false quando o backend estiver rodando
+  USE_MOCK: false,
   
   // Timeout para requisições (ms)
   TIMEOUT: 30000,

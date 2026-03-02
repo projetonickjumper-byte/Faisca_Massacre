@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
+import { authService } from "@/lib/api/services/auth.service"
 
 type UserType = "client" | "partner"
 
@@ -43,7 +44,7 @@ interface AuthContextType {
   register: (data: RegisterData) => Promise<{ success: boolean; error?: string }>
 }
 
-interface RegisterData {
+export interface RegisterData {
   name: string
   email: string
   password: string
@@ -54,42 +55,6 @@ interface RegisterData {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
-// Credenciais de teste - Cliente
-const TEST_CLIENT = {
-  email: "usuario@fitapp.com",
-  password: "fitapp123",
-  user: {
-    id: "1",
-    email: "usuario@fitapp.com",
-    name: "Joao Silva",
-    avatar: null,
-    type: "client" as const,
-    level: 12,
-    xp: 2450,
-  }
-}
-
-// Credenciais de teste - Parceiro
-const TEST_PARTNER = {
-  email: "parceiro@fitapp.com",
-  password: "parceiro123",
-  user: {
-    id: "p1",
-    email: "parceiro@fitapp.com",
-    name: "Carlos Fitness",
-    avatar: null,
-    type: "partner" as const,
-    businessName: "Academia Power Gym",
-    businessType: "gym" as const,
-    phone: "(11) 99999-9999",
-    address: "Rua das Academias, 123",
-    city: "Sao Paulo",
-    state: "SP",
-    isVerified: true,
-    planType: "premium" as const,
-  }
-}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
@@ -110,93 +75,76 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string, type: UserType = "client"): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true)
-    
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // Verificar credenciais de cliente
-    if (email === TEST_CLIENT.email && password === TEST_CLIENT.password && type === "client") {
-      setUser(TEST_CLIENT.user)
-      localStorage.setItem("fitapp_user", JSON.stringify(TEST_CLIENT.user))
+
+    try {
+      const result = await authService.login({ email, password, type })
+
+      if (result.success && result.data) {
+        const userData = result.data.user as User
+        setUser(userData)
+        localStorage.setItem("fitapp_user", JSON.stringify(userData))
+        localStorage.setItem("fitapp_token", result.data.token)
+        setIsLoading(false)
+        return { success: true }
+      }
+
       setIsLoading(false)
-      return { success: true }
-    }
-    
-    // Verificar credenciais de parceiro
-    if (email === TEST_PARTNER.email && password === TEST_PARTNER.password && type === "partner") {
-      setUser(TEST_PARTNER.user)
-      localStorage.setItem("fitapp_user", JSON.stringify(TEST_PARTNER.user))
+      return { success: false, error: result.error || "Email ou senha incorretos" }
+    } catch {
       setIsLoading(false)
-      return { success: true }
+      return { success: false, error: "Erro ao conectar com o servidor" }
     }
-    
-    setIsLoading(false)
-    return { success: false, error: "Email ou senha incorretos" }
   }
 
   const logout = () => {
     const wasPartner = user?.type === "partner"
     setUser(null)
     localStorage.removeItem("fitapp_user")
+    localStorage.removeItem("fitapp_token")
+    authService.logout().catch(() => { })
     router.push(wasPartner ? "/parceiro/login" : "/login")
   }
 
   const register = async (data: RegisterData): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true)
-    
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    if (data.email === TEST_CLIENT.email || data.email === TEST_PARTNER.email) {
-      setIsLoading(false)
-      return { success: false, error: "Este email ja esta cadastrado" }
-    }
 
-    if (data.password.length < 6) {
-      setIsLoading(false)
-      return { success: false, error: "A senha deve ter pelo menos 6 caracteres" }
-    }
-    
-    let newUser: User
+    try {
+      const result = await authService.register({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        type: data.type,
+        businessName: data.businessName,
+        businessType: data.businessType,
+        phone: data.phone,
+      })
 
-    if (data.type === "partner") {
-      newUser = {
-        id: Date.now().toString(),
-        email: data.email,
-        name: data.name,
-        avatar: null,
-        type: "partner",
-        businessName: data.businessName || data.name,
-        businessType: data.businessType || "gym",
-        phone: data.phone || "",
-        isVerified: false,
-        planType: "free",
+      if (result.success && result.data) {
+        const userData = result.data.user as User
+        setUser(userData)
+        localStorage.setItem("fitapp_user", JSON.stringify(userData))
+        localStorage.setItem("fitapp_token", result.data.token)
+        setIsLoading(false)
+        return { success: true }
       }
-    } else {
-      newUser = {
-        id: Date.now().toString(),
-        email: data.email,
-        name: data.name,
-        avatar: null,
-        type: "client",
-        level: 1,
-        xp: 0,
-      }
+
+      setIsLoading(false)
+      return { success: false, error: result.error || "Erro ao criar conta" }
+    } catch {
+      setIsLoading(false)
+      return { success: false, error: "Erro ao conectar com o servidor" }
     }
-    
-    setUser(newUser)
-    localStorage.setItem("fitapp_user", JSON.stringify(newUser))
-    setIsLoading(false)
-    return { success: true }
   }
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      isLoading, 
+    <AuthContext.Provider value={{
+      user,
+      isLoading,
       isAuthenticated: !!user,
       isPartner: user?.type === "partner",
-      login, 
+      login,
       logout,
-      register 
+      register
     }}>
       {children}
     </AuthContext.Provider>

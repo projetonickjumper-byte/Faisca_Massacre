@@ -4,12 +4,12 @@ import React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { 
-  Eye, 
-  EyeOff, 
-  Dumbbell, 
-  Lock, 
-  Mail, 
+import {
+  Eye,
+  EyeOff,
+  Dumbbell,
+  Lock,
+  Mail,
   ArrowRight,
   User,
   Check,
@@ -62,14 +62,14 @@ export default function CadastroPage() {
 
     setIsSubmitting(true)
 
-    const result = await register(name, email, password)
-    
+    const result = await register({ name, email, password, type: "client" })
+
     if (result.success) {
       router.push("/")
     } else {
       setError(result.error || "Erro ao criar conta")
     }
-    
+
     setIsSubmitting(false)
   }
 
@@ -79,14 +79,14 @@ export default function CadastroPage() {
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
-        
+
         {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" 
-             style={{ 
-               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-             }}
+        <div className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
         />
-        
+
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
           <div>
             <div className="flex items-center gap-3">
@@ -96,7 +96,7 @@ export default function CadastroPage() {
               <span className="text-xl font-semibold text-zinc-100">FitApp</span>
             </div>
           </div>
-          
+
           <div className="max-w-md">
             <h1 className="text-4xl font-bold text-zinc-100 leading-tight mb-4">
               Comece sua
@@ -105,7 +105,7 @@ export default function CadastroPage() {
             <p className="text-zinc-400 text-lg mb-8">
               Junte-se a milhares de pessoas que já transformaram sua rotina de treinos.
             </p>
-            
+
             {/* Benefits Cards */}
             <div className="space-y-3">
               <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
@@ -117,7 +117,7 @@ export default function CadastroPage() {
                   <p className="text-sm text-zinc-500">Em menos de 1 minuto você está pronto</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
                 <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-blue-500" />
@@ -127,7 +127,7 @@ export default function CadastroPage() {
                   <p className="text-sm text-zinc-500">Sem taxas escondidas ou cobranças</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm transition-all hover:bg-zinc-900/70">
                 <div className="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center">
                   <Trophy className="w-5 h-5 text-orange-500" />
@@ -138,7 +138,7 @@ export default function CadastroPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Stats */}
             <div className="mt-8 flex items-center gap-6">
               <div className="flex flex-col">
@@ -160,13 +160,13 @@ export default function CadastroPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="text-sm text-zinc-600">
             2026 FitApp. Todos os direitos reservados.
           </div>
         </div>
       </div>
-      
+
       {/* Right Panel - Register Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 overflow-y-auto">
         <div className="w-full max-w-md">
@@ -180,12 +180,12 @@ export default function CadastroPage() {
             </div>
             <p className="text-sm text-zinc-500">Crie sua conta gratuita</p>
           </div>
-          
+
           <div className="mb-8 hidden lg:block">
             <h2 className="text-2xl font-semibold text-zinc-100 mb-2">Criar conta</h2>
             <p className="text-zinc-500">Preencha os dados para começar</p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
               <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-start gap-3">
@@ -249,7 +249,7 @@ export default function CadastroPage() {
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              
+
               {/* Password Requirements */}
               {password && (
                 <div className="mt-3 p-3 rounded-lg bg-zinc-900/50 border border-zinc-800/50 space-y-2">
@@ -257,8 +257,8 @@ export default function CadastroPage() {
                     <div key={i} className="flex items-center gap-2 text-xs">
                       <div className={cn(
                         "w-4 h-4 rounded-full flex items-center justify-center transition-all",
-                        req.valid 
-                          ? "bg-emerald-500/20 text-emerald-500" 
+                        req.valid
+                          ? "bg-emerald-500/20 text-emerald-500"
                           : "bg-zinc-800 text-zinc-600"
                       )}>
                         {req.valid && <Check className="w-3 h-3" />}
@@ -328,9 +328,9 @@ export default function CadastroPage() {
               </label>
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40" 
+            <Button
+              type="submit"
+              className="w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-medium transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -349,16 +349,16 @@ export default function CadastroPage() {
 
           <div className="mt-6 pt-6 border-t border-zinc-800">
             <div className="flex items-center justify-center gap-6">
-              <Link 
-                href="/parceiro/login" 
+              <Link
+                href="/parceiro/login"
                 className="text-sm text-zinc-500 hover:text-orange-500 transition-colors inline-flex items-center gap-1.5"
               >
                 <Users className="w-3.5 h-3.5" />
                 Sou parceiro
               </Link>
               <div className="w-px h-4 bg-zinc-800" />
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className="text-sm text-zinc-500 hover:text-orange-500 transition-colors inline-flex items-center gap-1.5"
               >
                 <ArrowRight className="w-3.5 h-3.5 rotate-180" />

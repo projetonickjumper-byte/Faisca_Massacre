@@ -45,7 +45,7 @@ const globalRanking: RankingEntry[] = [
   { position: 1, userId: "u10", userName: "Pedro Silva", userAvatar: "https://i.pravatar.cc/150?img=10", points: 4520, checkins: 156, streak: 45, level: 12, change: 0 },
   { position: 2, userId: "u11", userName: "Ana Costa", userAvatar: "https://i.pravatar.cc/150?img=11", points: 4180, checkins: 142, streak: 38, level: 11, change: 2 },
   { position: 3, userId: "u12", userName: "Lucas Mendes", userAvatar: "https://i.pravatar.cc/150?img=12", points: 3890, checkins: 128, streak: 32, level: 10, change: -1 },
-  { position: 4, userId: "u1", userName: currentUser.name, userAvatar: currentUser.avatar || "", points: currentUser.xp, checkins: currentUser.totalCheckins, streak: 15, level: currentUser.level, change: 3 },
+  { position: 4, userId: "u1", userName: "Você", userAvatar: "", points: 3500, checkins: 110, streak: 15, level: 9, change: 3 },
   { position: 5, userId: "u13", userName: "Julia Santos", userAvatar: "https://i.pravatar.cc/150?img=13", points: 3200, checkins: 98, streak: 21, level: 8, change: -2 },
   { position: 6, userId: "u14", userName: "Rafael Lima", userAvatar: "https://i.pravatar.cc/150?img=14", points: 2980, checkins: 89, streak: 18, level: 7, change: 1 },
   { position: 7, userId: "u15", userName: "Camila Rocha", userAvatar: "https://i.pravatar.cc/150?img=15", points: 2750, checkins: 82, streak: 14, level: 7, change: 0 },
@@ -76,9 +76,26 @@ const getMedalStyle = (position: number) => {
 
 export default function RankingPage() {
   const [period, setPeriod] = useState("monthly")
-  const [rankingData, setRankingData] = useState<RankingEntry[]>(globalRanking)
   const { isAuthenticated, isLoading, user } = useAuth()
   const router = useRouter()
+
+  // Atualiza mock data com dados reais do usuário logado
+  const [rankingData, setRankingData] = useState<RankingEntry[]>(() => {
+    return globalRanking.map(entry => {
+      if (entry.userId === "u1" && user) {
+        return {
+          ...entry,
+          userName: user.name || "Você",
+          userAvatar: user.avatar || "",
+          points: user.xp || entry.points,
+          checkins: user.totalCheckins || entry.checkins,
+          level: user.level || entry.level,
+        }
+      }
+      return entry
+    })
+  })
+
   const currentUserEntry = rankingData.find(e => e.userId === user?.id || e.userId === "u1")
 
   useEffect(() => {
